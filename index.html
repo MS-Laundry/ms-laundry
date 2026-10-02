@@ -71,7 +71,7 @@
                 <div class="hidden md:flex space-x-8 font-medium">
                     <a href="#features" class="text-slate-600 hover:text-sky-600 transition">エムズの特徴</a>
                     <a href="#services" class="text-slate-600 hover:text-sky-600 transition">サービス・機器</a>
-                    <a href="#gallery" class="text-slate-600 hover:text-sky-600 transition">店内の様子</a>
+                    <a href="#gallery" class="text-slate-600 hover:text-sky-600 transition">店内フォトギャラリー</a>
                     <a href="#access" class="text-slate-600 hover:text-sky-600 transition">店舗情報・アクセス</a>
                 </div>
                 <div class="hidden md:block">
@@ -91,7 +91,7 @@
         <div id="mobile-menu" class="hidden md:hidden glass border-b border-slate-200 px-6 pt-4 pb-6 space-y-4 shadow-lg transition-all">
             <a href="#features" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">エムズの特徴</a>
             <a href="#services" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">サービス・機器</a>
-            <a href="#gallery" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">店内の様子・大物洗い</a>
+            <a href="#gallery" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">店内フォトギャラリー</a>
             <a href="#access" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">店舗情報・アクセス</a>
             <div class="pt-2">
                 <a href="tel:0223715401" class="flex items-center justify-center w-full px-4 py-3.5 bg-sky-600 text-white rounded-xl text-base font-bold shadow-md hover:bg-sky-700 transition">
@@ -282,7 +282,7 @@
     <section id="gallery" class="py-20 sm:py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <span class="text-sky-600 font-bold text-sm tracking-widest uppercase block mb-3">Gallery & Features</span>
+                <span class="text-sky-600 font-bold text-sm tracking-widest uppercase block mb-3">Guide & Gallery</span>
                 <h2 class="text-3xl lg:text-4xl font-bold mb-4">店内の様子・大物洗いのご案内</h2>
                 <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">
                     ご家庭の洗濯機では洗えない大きな寝具も丸ごとスッキリ！<br class="hidden sm:inline">
@@ -291,7 +291,7 @@
             </div>
 
             <!-- Large Item Laundry Highlight Card -->
-            <div class="max-w-4xl mx-auto mb-16 bg-gradient-to-br from-sky-50 via-sky-100/50 to-indigo-50/40 border border-sky-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div class="max-w-4xl mx-auto mb-20 bg-gradient-to-br from-sky-50 via-sky-100/50 to-indigo-50/40 border border-sky-200/90 rounded-3xl p-6 sm:p-10 shadow-sm">
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                     <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-sky-300">
                         <i data-lucide="layers" class="w-8 h-8"></i>
@@ -303,7 +303,7 @@
                         <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
                             羽毛布団・こたつ布団・毛布も余裕の大型サイズ対応！
                         </h3>
-                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-5">
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
                             「家の洗濯機に入らない」「天日干しだけではダニや汗汚れが心配……」そんな大きな寝具も当店にお任せください。大容量の大型洗濯乾燥機なら、かさばる布団やこたつ布団もドラムの中で広々としっかり丸洗い。パワフルな高温ガス乾燥で、中綿の奥までダニ・花粉・ハウスダストを撃退し、買ったときのようなふっくら極上の仕上がりになります。
                         </p>
                         
@@ -329,24 +329,35 @@
                 </div>
             </div>
 
-            <!-- Category Filter Tabs -->
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
-                <button onclick="filterGallery('all')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-sky-600 text-white shadow-md transition" data-category="all">
-                    すべて
-                </button>
-                <button onclick="filterGallery('exterior')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="exterior">
-                    店舗外観
-                </button>
-                <button onclick="filterGallery('interior')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="interior">
-                    機器・店内
-                </button>
-                <button onclick="filterGallery('waiting')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="waiting">
-                    待合室・設備
-                </button>
+            <!-- Gallery Sub-header & Category Filter Tabs -->
+            <div class="border-t border-slate-200 pt-16 pb-10">
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 mb-3 shadow-sm">
+                        <i data-lucide="image" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-2">店内フォトギャラリー</h3>
+                    <p class="text-slate-500 text-sm sm:text-base">カテゴリを選んで、店内の雰囲気や設備をご確認いただけます。</p>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+                    <button onclick="filterGallery('all')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-sky-600 text-white shadow-md transition" data-category="all">
+                        すべて
+                    </button>
+                    <button onclick="filterGallery('exterior')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="exterior">
+                        店舗外観
+                    </button>
+                    <button onclick="filterGallery('interior')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="interior">
+                        機器・店内
+                    </button>
+                    <button onclick="filterGallery('waiting')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="waiting">
+                        待合室・設備
+                    </button>
+                </div>
             </div>
 
             <!-- Masonry Grid -->
-            <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 pt-4">
                 <!-- Dynamically filled by JS -->
             </div>
 
