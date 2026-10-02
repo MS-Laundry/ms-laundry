@@ -329,6 +329,22 @@
                 </div>
             </div>
 
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+                <button onclick="filterGallery('all')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-sky-600 text-white shadow-md transition" data-category="all">
+                    すべて
+                </button>
+                <button onclick="filterGallery('exterior')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="exterior">
+                    店舗外観
+                </button>
+                <button onclick="filterGallery('interior')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="interior">
+                    機器・店内
+                </button>
+                <button onclick="filterGallery('waiting')" class="gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-category="waiting">
+                    待合室・設備
+                </button>
+            </div>
+
             <!-- Masonry Grid -->
             <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
                 <!-- Dynamically filled by JS -->
@@ -542,37 +558,44 @@
             {
                 url: 'images/gaikan1.jpeg',
                 title: '店舗外観・専用駐車場',
-                desc: '泉中央駅から徒歩約7分。大きな布団やこたつ布団の積み下ろしも楽々の専用駐車場を完備しています。'
+                desc: '泉中央駅から徒歩約7分。大きな布団やこたつ布団の積み下ろしも楽々の専用駐車場を完備しています。',
+                category: 'exterior'
             },
             {
                 url: 'images/naisou1.webp',
                 title: '清潔で安心の店内空間',
-                desc: '明るく開放的な店内。夜間（22:00まで）も安心してご利用いただけるよう防犯・衛生管理を徹底しています。'
+                desc: '明るく開放的な店内。夜間（22:00まで）も安心してご利用いただけるよう防犯・衛生管理を徹底しています。',
+                category: 'interior'
             },
             {
                 url: 'images/naisou2.webp',
                 title: '大判整理テーブル＆最新設備',
-                desc: '洗い上がった大きな羽毛布団やこたつ布団、毛布もゆったり広げて綺麗に畳める長テーブルを完備。'
+                desc: '洗い上がった大きな羽毛布団やこたつ布団、毛布もゆったり広げて綺麗に畳める長テーブルを完備。',
+                category: 'interior'
             },
             {
                 url: 'images/naisou3.webp',
                 title: '二段式ガス乾燥機',
-                desc: 'スピーディー＆パワフルにふっくら乾かすガス温風乾燥機。除菌・ダニ対策にも効果的です。'
+                desc: 'スピーディー＆パワフルにふっくら乾かすガス温風乾燥機。除菌・ダニ対策にも効果的です。',
+                category: 'interior'
             },
             {
                 url: 'images/naisou4.webp',
                 title: '大型洗濯乾燥機（布団丸洗い対応）',
-                desc: '羽毛布団やこたつ布団が丸ごと洗えるAQUA大容量洗濯乾燥機。普段のまとめ洗いから大物寝具まで余裕の対応力。'
+                desc: '羽毛布団やこたつ布団が丸ごと洗えるAQUA大容量洗濯乾燥機。普段のまとめ洗いから大物寝具まで余裕の対応力。',
+                category: 'interior'
             },
             {
                 url: 'images/kyuukei1.webp',
                 title: 'ゆったり待合室・休憩スペース',
-                desc: '洗濯・乾燥の待ち時間も快適。カウンター席やソファ、自動販売機を備えた専用待合室をご用意しています。'
+                desc: '洗濯・乾燥の待ち時間も快適。カウンター席やソファ、自動販売機を備えた専用待合室をご用意しています。',
+                category: 'waiting'
             },
             {
                 url: 'images/toilet1.webp',
                 title: '清潔なトイレ・店内設備',
-                desc: 'どなた様でも気持ちよくご利用いただけるよう、トイレやフロアの定期清掃・衛生管理を徹底しています。'
+                desc: 'どなた様でも気持ちよくご利用いただけるよう、トイレやフロアの定期清掃・衛生管理を徹底しています。',
+                category: 'waiting'
             }
         ];
 
@@ -581,20 +604,31 @@
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
 
+        let currentFilteredData = galleryData;
+
         // Render Gallery
-        function initGallery() {
-            galleryGrid.innerHTML = galleryData.map((item, index) => `
-                <div class="gallery-item reveal cursor-pointer group relative overflow-hidden rounded-2xl shadow-sm" onclick="openGalleryModal(${index})">
-                    <img src="${item.url}" alt="${item.title}" loading="lazy" class="transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-white font-bold text-lg leading-tight">${item.title}</h3>
-                        <p class="text-slate-200 text-xs mt-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">${item.desc}</p>
+        function renderGallery(data) {
+            if (data.length === 0) {
+                galleryGrid.innerHTML = `<p class="col-span-full text-center text-slate-400 py-12">該当する写真はありません。</p>`;
+                return;
+            }
+
+            galleryGrid.innerHTML = data.map((item) => {
+                // Find original index in galleryData for lightbox
+                const originalIndex = galleryData.findIndex(g => g.url === item.url);
+                return `
+                    <div class="gallery-item reveal cursor-pointer group relative overflow-hidden rounded-2xl shadow-sm" onclick="openGalleryModal(${originalIndex})">
+                        <img src="${item.url}" alt="${item.title}" loading="lazy" class="transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <h3 class="text-white font-bold text-lg leading-tight">${item.title}</h3>
+                            <p class="text-slate-200 text-xs mt-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">${item.desc}</p>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                        </div>
                     </div>
-                    <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
             lucide.createIcons();
             
             // Scroll Reveal Animation
@@ -607,6 +641,28 @@
             }, { threshold: 0.1 });
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initGallery() {
+            renderGallery(galleryData);
+        }
+
+        function filterGallery(category) {
+            // Update active tab styles
+            document.querySelectorAll('.gallery-tab').forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = 'gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-sky-600 text-white shadow-md transition';
+                } else {
+                    btn.className = 'gallery-tab px-5 py-2.5 rounded-full text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+                }
+            });
+
+            if (category === 'all') {
+                currentFilteredData = galleryData;
+            } else {
+                currentFilteredData = galleryData.filter(item => item.category === category);
+            }
+            renderGallery(currentFilteredData);
         }
 
         function openGalleryModal(index) {
