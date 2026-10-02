@@ -34,6 +34,28 @@
         .modal {
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
@@ -48,6 +70,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 font-medium">
                     <a href="#services" class="text-slate-600 hover:text-sky-600 transition">サービス・機器</a>
+                    <a href="#gallery" class="text-slate-600 hover:text-sky-600 transition">店内の様子</a>
                     <a href="#features" class="text-slate-600 hover:text-sky-600 transition">エムズの特徴</a>
                     <a href="#access" class="text-slate-600 hover:text-sky-600 transition">店舗情報・アクセス</a>
                 </div>
@@ -67,6 +90,7 @@
         <!-- Mobile Dropdown Menu -->
         <div id="mobile-menu" class="hidden md:hidden glass border-b border-slate-200 px-6 pt-4 pb-6 space-y-4 shadow-lg transition-all">
             <a href="#services" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">サービス・機器</a>
+            <a href="#gallery" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">店内の様子・大物洗い</a>
             <a href="#features" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">エムズの特徴</a>
             <a href="#access" class="block text-slate-700 hover:text-sky-600 font-medium py-2 text-base border-b border-slate-100">店舗情報・アクセス</a>
             <div class="pt-2">
@@ -254,6 +278,82 @@
         </div>
     </div>
 
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="py-20 sm:py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-sky-600 font-bold text-sm tracking-widest uppercase block mb-3">Gallery & Features</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">店内の様子・大物洗いのご案内</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base">
+                    ご家庭の洗濯機では洗えない大きな寝具も丸ごとスッキリ！<br class="hidden sm:inline">
+                    最新の大型機器と、清潔で快適にお過ごしいただける空間をご覧ください。
+                </p>
+            </div>
+
+            <!-- Large Item Laundry Highlight Card -->
+            <div class="max-w-4xl mx-auto mb-16 bg-gradient-to-br from-sky-50 via-sky-100/50 to-indigo-50/40 border border-sky-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-sky-300">
+                        <i data-lucide="layers" class="w-8 h-8"></i>
+                    </div>
+                    <div class="text-center sm:text-left flex-1">
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-600 text-white text-xs font-bold mb-3 shadow-xs">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> ご家庭で洗えない大物寝具もお任せ
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                            羽毛布団・こたつ布団・毛布も余裕の大型サイズ対応！
+                        </h3>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-5">
+                            「家の洗濯機に入らない」「天日干しだけではダニや汗汚れが心配……」そんな大きな寝具も当店にお任せください。大容量の大型洗濯乾燥機なら、かさばる布団やこたつ布団もドラムの中で広々としっかり丸洗い。パワフルな高温ガス乾燥で、中綿の奥までダニ・花粉・ハウスダストを撃退し、買ったときのようなふっくら極上の仕上がりになります。
+                        </p>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                            <div class="bg-white/90 rounded-xl p-3 border border-sky-100 shadow-xs">
+                                <p class="text-xs text-sky-600 font-bold mb-0.5">羽毛布団・掛布団</p>
+                                <p class="text-xs text-slate-500">水洗い＆高温乾燥でふんわり再生</p>
+                            </div>
+                            <div class="bg-white/90 rounded-xl p-3 border border-sky-100 shadow-xs">
+                                <p class="text-xs text-sky-600 font-bold mb-0.5">こたつ布団・敷パッド</p>
+                                <p class="text-xs text-slate-500">季節の変わり目の丸洗いに最適</p>
+                            </div>
+                            <div class="bg-white/90 rounded-xl p-3 border border-sky-100 shadow-xs">
+                                <p class="text-xs text-sky-600 font-bold mb-0.5">毛布・厚手ブランケット</p>
+                                <p class="text-xs text-slate-500">2重毛布や家族分もまとめて</p>
+                            </div>
+                            <div class="bg-white/90 rounded-xl p-3 border border-sky-100 shadow-xs">
+                                <p class="text-xs text-sky-600 font-bold mb-0.5">カーテン・大物カバー</p>
+                                <p class="text-xs text-slate-500">ホコリや臭いもスピード洗浄</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div id="gallery-grid" class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                <!-- Dynamically filled by JS -->
+            </div>
+
+            <div class="mt-14 text-center">
+                <p class="text-slate-500 text-xs sm:text-sm">※実際の店舗写真です。各写真をタップ・クリックすると大きく拡大してご覧いただけます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Lightbox Modal -->
+    <div id="gallery-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/95 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <button onclick="closeGalleryModal()" class="absolute top-6 right-6 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition z-10">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <div class="max-w-5xl w-full flex flex-col items-center">
+            <img id="lightbox-img" src="" alt="" class="max-h-[85vh] w-auto rounded-lg shadow-2xl transform scale-95 transition-transform duration-300">
+            <div id="lightbox-caption" class="mt-6 text-white text-center">
+                <h3 class="text-xl font-bold mb-1"></h3>
+                <p class="text-slate-300 text-sm"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Access & Info Section -->
     <section id="access" class="py-20 sm:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -436,6 +536,112 @@
                 closeModal();
             }
         });
+
+        // --- Photo Gallery Logic ---
+        const galleryData = [
+            {
+                url: 'images/gaikan1.jpeg',
+                title: '店舗外観',
+                desc: '泉中央駅から徒歩約7分。大きな布団の持ち込みにも便利なお車対応の駐車場を完備しています。'
+            },
+            {
+                url: 'images/naisou1.webp',
+                title: '清潔で広々とした店内',
+                desc: '明るく開放的な空間。大きな洗濯物の出し入れも周囲を気にせず快適に行えます。'
+            },
+            {
+                url: 'images/naisou2.webp',
+                title: '大型洗濯乾燥機（布団・こたつ布団対応）',
+                desc: 'ご家庭では洗えない羽毛布団・こたつ布団・毛布も丸ごと水洗い＆強力ガス乾燥。ダニ・花粉対策にも最適です。'
+            },
+            {
+                url: 'images/kyuukei1.webp',
+                title: 'ゆったり待合スペース',
+                desc: '自動販売機や漫画本を完備。大物洗いや乾燥の待ち時間も快適にお過ごしいただけます。'
+            },
+            {
+                url: 'images/naisou3.webp',
+                title: '大判の整理・畳みテーブル',
+                desc: '洗い上がった大きな羽毛布団やこたつ布団、毛布もゆったり広げて綺麗に畳める作業台です。'
+            },
+            {
+                url: 'images/naisou4.webp',
+                title: '充実の大型機器ラインナップ',
+                desc: 'まとめ洗いや大型寝具、スニーカー専用機まで、日常から季節の変わり目のお洗濯まで幅広く対応。'
+            },
+            {
+                url: 'images/toilet1.webp',
+                title: '清潔なトイレ',
+                desc: '毎日の清掃と衛生管理を徹底。どなた様も気持ちよく安心してご利用いただけます。'
+            }
+        ];
+
+        const galleryGrid = document.getElementById('gallery-grid');
+        const galleryModal = document.getElementById('gallery-modal');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        // Render Gallery
+        function initGallery() {
+            galleryGrid.innerHTML = galleryData.map((item, index) => `
+                <div class="gallery-item reveal cursor-pointer group relative overflow-hidden rounded-2xl shadow-sm" onclick="openGalleryModal(${index})">
+                    <img src="${item.url}" alt="${item.title}" loading="lazy" class="transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-white font-bold text-lg leading-tight">${item.title}</h3>
+                        <p class="text-slate-200 text-xs mt-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">${item.desc}</p>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+            
+            // Scroll Reveal Animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function openGalleryModal(index) {
+            const item = galleryData[index];
+            lightboxImg.src = item.url;
+            lightboxCaption.querySelector('h3').textContent = item.title;
+            lightboxCaption.querySelector('p').textContent = item.desc;
+
+            galleryModal.classList.remove('hidden');
+            setTimeout(() => {
+                galleryModal.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeGalleryModal() {
+            galleryModal.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            setTimeout(() => {
+                galleryModal.classList.add('hidden');
+            }, 300);
+        }
+
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal || e.target.closest('.max-w-5xl') === null) {
+                if (e.target.tagName !== 'BUTTON' && e.target.closest('button') === null) {
+                     closeGalleryModal();
+                }
+            }
+        });
+
+        // Initialize gallery on load
+        window.addEventListener('DOMContentLoaded', initGallery);
     </script>
 </body>
 </html>
